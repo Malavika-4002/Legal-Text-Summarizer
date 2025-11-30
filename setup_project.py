@@ -43,3 +43,7 @@ def create_structure():
 
 if __name__ == "__main__":
     create_structure()
+
+
+    # python -m venv venv
+    # venv\Scripts\activate
