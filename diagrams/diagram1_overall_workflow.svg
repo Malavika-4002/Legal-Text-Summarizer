@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="240" viewBox="0 0 1200 240">
+  <style>
+    .box { fill: #ffffff; stroke: #222; stroke-width: 2; rx:8; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size:14px; fill:#111; }
+    .title { font-family: Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; }
+    .arrow { stroke: #222; stroke-width:2; fill:none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#222" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="20" y="22" class="title">Diagram 1 — LeXiDesk: Overall Project Workflow</text>
+
+  <!-- Boxes horizontally -->
+  <g transform="translate(20,40)">
+    <rect class="box" x="0" y="0" width="160" height="60" />
+    <text class="label" x="80" y="35" text-anchor="middle">Raw Legal Documents</text>
+
+    <rect class="box" x="200" y="0" width="120" height="60" />
+    <text class="label" x="260" y="35" text-anchor="middle">Preprocessing</text>
+
+    <rect class="box" x="350" y="0" width="240" height="60" />
+    <text class="label" x="470" y="20" text-anchor="middle">Legal Sentence Boundary Detection (SBD)</text>
+
+    <rect class="box" x="610" y="0" width="200" height="60" />
+    <text class="label" x="710" y="35" text-anchor="middle">Sentence-Segmented Legal Text</text>
+
+    <rect class="box" x="840" y="0" width="230" height="60" />
+    <text class="label" x="955" y="20" text-anchor="middle">Extractive Sentence Selection (TF-IDF + MMR)</text>
+
+    <rect class="box" x="1090" y="0" width="170" height="60" />
+    <text class="label" x="1175" y="35" text-anchor="middle">Compressed Input Generation</text>
+  </g>
+
+  <!-- Second row boxes -->
+  <g transform="translate(20,120)">
+    <rect class="box" x="0" y="0" width="260" height="60" />
+    <text class="label" x="130" y="35" text-anchor="middle">SentencePiece Tokenization (BPE)</text>
+
+    <rect class="box" x="320" y="0" width="300" height="60" />
+    <text class="label" x="470" y="20" text-anchor="middle">Abstractive Summarization (Seq2Seq with Attention)</text>
+
+    <rect class="box" x="650" y="0" width="220" height="60" />
+    <text class="label" x="760" y="35" text-anchor="middle">Final Legal Summary Output</text>
+  </g>
+
+  <!-- Arrows top row -->
+  <path class="arrow" d="M180 70 L200 70" />
+  <path class="arrow" d="M320 70 L350 70" />
+  <path class="arrow" d="M590 70 L610 70" />
+  <path class="arrow" d="M810 70 L840 70" />
+  <path class="arrow" d="M1070 70 L1090 70" />
+
+  <!-- Arrow from Compressed Input Generation down to SentencePiece Tokenization -->
+  <path class="arrow" d="M1260 90 L1260 120 L260 120" />
+
+  <!-- Arrows second row -->
+  <path class="arrow" d="M260 150 L320 150" />
+  <path class="arrow" d="M620 150 L650 150" />
+
+  <!-- Labels footnote -->
+  <text x="20" y="220" class="label">Notes: Extractive selection uses TF-IDF + MMR as implemented; Abstractive summarizer is Seq2Seq with attention.</text>
+</svg>

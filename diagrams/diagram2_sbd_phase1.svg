@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="360" viewBox="0 0 980 360">
+  <style>
+    .box { fill: #ffffff; stroke: #222; stroke-width: 2; rx:8; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size:14px; fill:#111; }
+    .title { font-family: Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; }
+    .arrow { stroke: #222; stroke-width:2; fill:none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#222" />
+    </marker>
+  </defs>
+
+  <text x="20" y="26" class="title">Diagram 2 — Phase 1: Legal Sentence Boundary Detection (SBD)</text>
+
+  <!-- Vertical flow -->
+  <g transform="translate(60,50)">
+    <rect class="box" x="0" y="0" width="300" height="50" />
+    <text class="label" x="150" y="32" text-anchor="middle">Legal Text Input</text>
+
+    <path class="arrow" d="M150 50 L150 80" />
+
+    <rect class="box" x="0" y="90" width="300" height="50" />
+    <text class="label" x="150" y="122" text-anchor="middle">Text Normalization</text>
+
+    <path class="arrow" d="M150 140 L150 170" />
+
+    <rect class="box" x="0" y="180" width="300" height="50" />
+    <text class="label" x="150" y="212" text-anchor="middle">Tokenization</text>
+
+    <path class="arrow" d="M150 230 L150 260" />
+
+    <rect class="box" x="0" y="270" width="300" height="50" />
+    <text class="label" x="150" y="302" text-anchor="middle">Feature Extraction</text>
+  </g>
+
+  <!-- Model block and outputs on the right -->
+  <g transform="translate(420,140)">
+    <rect class="box" x="0" y="-20" width="360" height="120" />
+    <text class="label" x="180" y="0" text-anchor="middle">Hybrid CNN + CRF Model</text>
+    <text class="label" x="180" y="20" text-anchor="middle">(Inference)</text>
+
+    <!-- Arrow from Feature Extraction to Model -->
+    <path class="arrow" d="M360 200 L420 200 L420 140" />
+
+    <!-- Output arrow -->
+    <path class="arrow" d="M780 140 L860 140" />
+  </g>
+
+  <g transform="translate(860,120)">
+    <rect class="box" x="0" y="0" width="280" height="60" />
+    <text class="label" x="140" y="35" text-anchor="middle">Sentence Boundary Prediction</text>
+  </g>
+
+  <!-- Final output box at bottom right -->
+  <rect class="box" x="860" y="200" width="280" height="60" />
+  <text class="label" x="1000" y="235" text-anchor="middle">Sentence-Segmented Legal Text Output</text>
+
+  <!-- Arrow from Sentence Boundary Prediction to final output -->
+  <path class="arrow" d="M1000 180 L1000 200" />
+
+  <!-- Small explanatory note -->
+  <text x="20" y="340" class="label">Notes: The implemented approach uses feature extraction followed by a hybrid CNN + CRF model for sentence boundary inference, producing segmented legal text.</text>
+</svg>

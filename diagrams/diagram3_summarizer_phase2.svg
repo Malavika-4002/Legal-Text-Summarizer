@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <style>
+    .box { fill: #ffffff; stroke: #222; stroke-width: 2; rx:8; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size:13px; fill:#111; }
+    .title { font-family: Arial, Helvetica, sans-serif; font-size:16px; font-weight:700; }
+    .arrow { stroke: #222; stroke-width:2; fill:none; marker-end: url(#arrowhead); }
+    .dashed { stroke-dasharray:6 4; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#222" />
+    </marker>
+  </defs>
+
+  <text x="20" y="26" class="title">Diagram 3 — Phase 2: Legal Text Summarization (Seq2Seq with Bahdanau Attention)</text>
+
+  <!-- Left column: input compression flow -->
+  <g transform="translate(40,60)">
+    <rect class="box" x="0" y="0" width="260" height="60" />
+    <text class="label" x="130" y="36" text-anchor="middle">Sentence-Segmented Legal Text</text>
+
+    <path class="arrow" d="M130 60 L130 100" />
+
+    <rect class="box" x="0" y="120" width="260" height="60" />
+    <text class="label" x="130" y="156" text-anchor="middle">Extractive Compression (TF-IDF + MMR)</text>
+
+    <path class="arrow" d="M130 180 L130 220" />
+
+    <rect class="box" x="0" y="240" width="260" height="60" />
+    <text class="label" x="130" y="276" text-anchor="middle">Compressed Sentence Sequence</text>
+
+    <path class="arrow" d="M260 270 L340 270" />
+
+    <rect class="box" x="340" y="240" width="240" height="60" />
+    <text class="label" x="460" y="276" text-anchor="middle">SentencePiece Tokenizer (BPE)</text>
+
+    <path class="arrow" d="M580 270 L660 270" />
+  </g>
+
+  <!-- Seq2Seq model block (center) -->
+  <g transform="translate(660,60)">
+    <rect class="box" x="0" y="0" width="480" height="360" />
+    <text class="label" x="240" y="22" text-anchor="middle">Seq2Seq Model</text>
+
+    <!-- Encoder -->
+    <rect class="box" x="30" y="60" width="170" height="80" />
+    <text class="label" x="115" y="102" text-anchor="middle">Encoder (LSTM)</text>
+
+    <!-- Encoder outputs -->
+    <rect class="box" x="30" y="160" width="170" height="40" />
+    <text class="label" x="115" y="187" text-anchor="middle">Encoder Outputs</text>
+
+    <!-- Attention mechanism -->
+    <rect class="box" x="230" y="130" width="180" height="80" />
+    <text class="label" x="320" y="166" text-anchor="middle">Bahdanau Attention Mechanism</text>
+
+    <!-- Decoder -->
+    <rect class="box" x="430" y="60" width="170" height="80" />
+    <text class="label" x="515" y="102" text-anchor="middle">Decoder (LSTM)</text>
+
+    <!-- Sequential decoding flow arrow -->
+    <path class="arrow" d="M200 100 L230 100" />
+    <path class="arrow" d="M410 100 L430 100" />
+
+    <!-- Attention interactions (encoder -> attention -> decoder) -->
+    <path class="arrow" d="M200 180 L230 180" />
+    <path class="arrow" d="M410 180 L430 180" />
+    <path class="arrow" d="M320 210 L430 130" />
+
+    <!-- Arrow from Encoder Outputs to Attention -->
+    <path class="arrow" d="M200 180 L230 160" />
+    <!-- Arrow from Attention to Decoder -->
+    <path class="arrow" d="M410 160 L430 120" />
+  </g>
+
+  <!-- Teacher Forcing (Training Phase) -->
+  <g transform="translate(40,340)">
+    <rect class="box dashed" x="0" y="0" width="300" height="60" />
+    <text class="label" x="150" y="36" text-anchor="middle">Teacher Forcing (Training Phase) — reference target fed to Decoder</text>
+
+    <!-- Arrow from teacher forcing to decoder (dashed path) -->
+    <path class="arrow dashed" d="M300 370 L480 370 L480 200" />
+  </g>
+
+  <!-- Output summary -->
+  <g transform="translate(900,200)">
+    <rect class="box" x="0" y="0" width="240" height="80" />
+    <text class="label" x="120" y="40" text-anchor="middle">Generated Abstractive Legal Summary</text>
+  </g>
+
+  <!-- Arrow from Seq2Seq Model to output -->
+  <path class="arrow" d="M1140 200 L1140 240 L900 240" />
+
+  <!-- Input arrow into Seq2Seq -->
+  <path class="arrow" d="M660 270 L900 270" />
+
+  <text x="20" y="500" class="label">Notes: The diagram shows Extractive Compression (TF-IDF + MMR) feeding a BPE tokenizer, tokens enter an LSTM encoder. Bahdanau attention computes context from encoder outputs and interacts with the LSTM decoder. Teacher forcing applies during training only.</text>
+</svg>
