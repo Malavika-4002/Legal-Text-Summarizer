@@ -1,3 +1,5 @@
+#predict.py
+
 from src.summarizer.sentence_splitter import split_into_sentences
 from src.summarizer.feature_builder import build_tfidf_vectorizer, compute_combined_scores
 from src.summarizer.extractive_ranker import mmr_select, get_sentence_vectors_tf

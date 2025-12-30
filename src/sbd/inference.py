@@ -1,4 +1,4 @@
-#inference.py
+#src/sbd/inference.py
 
 import joblib
 import re

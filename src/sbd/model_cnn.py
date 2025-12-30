@@ -1,4 +1,4 @@
-# In src/cnn_model.py
+# In src/sbd/cnn_model.py
 
 import pandas as pd
 import torch
